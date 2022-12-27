@@ -15,21 +15,20 @@ public class Messages extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.isFromType(ChannelType.TEXT) && !event.getAuthor().isBot()) {
-            long user = event.getAuthor().getIdLong();
-            long messageId = event.getMessage().getTimeCreated().toEpochSecond();
-            Configuration config = Configuration.getInstance();
+        if (!event.isFromType(ChannelType.TEXT) && event.getAuthor().isBot()) return;
+        long user = event.getAuthor().getIdLong();
+        long messageId = event.getMessage().getTimeCreated().toEpochSecond();
+        Configuration config = Configuration.getInstance();
 
-            if (!(rateLimit.containsKey(user))) {
+        if (!(rateLimit.containsKey(user))) {
+            int randomNum = ThreadLocalRandom.current().nextInt(5, 12 + 1);
+            rateLimit.put(user, messageId);
+            xp.put(user, randomNum * (!config.exist("boost") ? 1 : Integer.parseInt(config.getProperty("boost"))));
+        } else {
+            if ((messageId - rateLimit.get(user)) > 10) {
                 int randomNum = ThreadLocalRandom.current().nextInt(5, 12 + 1);
-                rateLimit.put(user, messageId);
-                xp.put(user, randomNum * (!config.exist("boost") ? 1 : Integer.parseInt(config.getProperty("boost"))));
-            } else {
-                if ((messageId - rateLimit.get(user)) > 10) {
-                    int randomNum = ThreadLocalRandom.current().nextInt(5, 12 + 1);
-                    xp.put(user, xp.get(user) + randomNum * (!config.exist("boost") ? 1 : Integer.parseInt(config.getProperty("boost"))));
-                    rateLimit.replace(user, messageId);
-                }
+                xp.put(user, xp.get(user) + randomNum * (!config.exist("boost") ? 1 : Integer.parseInt(config.getProperty("boost"))));
+                rateLimit.replace(user, messageId);
             }
         }
     }

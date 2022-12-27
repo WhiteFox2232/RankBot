@@ -10,23 +10,20 @@ public class VoiceLeave extends ListenerAdapter {
 
     @Override
     public void onGuildVoiceUpdate(GuildVoiceUpdateEvent event) {
-        if (event.getChannelJoined() == null) {
-            long userId = event.getMember().getIdLong();
-            if (voiceXp.containsKey(userId)) {
-                int xp = voiceXp.get(userId);
+        if (event.getChannelJoined() != null) return;
+        long userId = event.getMember().getIdLong();
+        if (!voiceXp.containsKey(userId)) return;
+        int xp = voiceXp.get(userId);
 
-                if (MongoDB.isRegister(userId)) {
-                    MongoDB.incrementXp(userId, xp);
-                } else {
-                    MongoDB.register(userId, xp, 0);
-                }
-
-                event.getMember().getUser().openPrivateChannel()
-                        .flatMap(channel -> channel.sendMessage(":rocket: » Félicitations **" + event.getMember().getUser().getName() + "** ! Vous avez gagné un total de **" + xp + "xp** pour cette session de vocal."))
-                        .queue();
-
-                voiceXp.remove(userId);
-            }
+        if (MongoDB.isRegister(userId)) {
+            MongoDB.incrementXp(userId, xp);
+        } else {
+            MongoDB.register(userId, xp, 0);
         }
+        event.getMember().getUser().openPrivateChannel()
+                .flatMap(channel -> channel.sendMessage(":rocket: » Félicitations **" + event.getMember().getUser().getName() + "** ! Vous avez gagné un total de **" + xp + "xp** pour cette session de vocal."))
+                .queue();
+
+        voiceXp.remove(userId);
     }
 }

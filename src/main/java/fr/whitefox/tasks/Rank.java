@@ -29,11 +29,9 @@ public class Rank {
 
             HashMap<Long, Integer> updates = new HashMap<>();
             for (VoiceChannel voiceChannel : guild.getVoiceChannelCache()) {
-                if (voiceChannel.getMembers().size() < 2)
-                    return;
+                if (voiceChannel.getMembers().size() < 2) return;
                 for (int i = 0; i < voiceChannel.getMembers().size(); i++) {
-                    if (voiceChannel.getMembers().get(i).getVoiceState().isSelfMuted() || voiceChannel.getMembers().get(i).getVoiceState().isSelfDeafened())
-                        return;
+                    if (voiceChannel.getMembers().get(i).getVoiceState().isSelfMuted() || voiceChannel.getMembers().get(i).getVoiceState().isSelfDeafened()) return;
                     int randomNum = ThreadLocalRandom.current().nextInt(5, 12 + 1);
                     long userID = voiceChannel.getMembers().get(i).getIdLong();
 
