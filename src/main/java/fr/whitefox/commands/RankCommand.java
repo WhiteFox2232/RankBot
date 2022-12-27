@@ -43,7 +43,6 @@ public class RankCommand extends ListenerAdapter {
                 rankEmbed.addField(":chart_with_upwards_trend: Niveau `" + level + "`", "** **", true);
                 rankEmbed.addField(":hash: Position `#" + rank + "`", "** **", true);
                 rankEmbed.addField("** **", avancement, false);
-                rankEmbed.setThumbnail(event.getJDA().getSelfUser().getAvatarUrl());
                 rankEmbed.setColor(new Color(0x303136));
                 event.replyEmbeds(rankEmbed.build()).queue();
             }
