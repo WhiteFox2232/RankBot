@@ -22,6 +22,11 @@ public class CommandsManager {
                                 new SubcommandData("set", "Définissez le multiplicateur d'xp du serveur")
                                         .addOption(OptionType.INTEGER, "multiplicateur", "Par combien souhaitez-vous multiplier l'xp acquis ?", true),
                                 new SubcommandData("get", "Obtenez le boost actuel du serveur")
+                        ),
+                Commands.slash("config", "Configurez divers paramètres fondamentaux du bot")
+                        .addSubcommands(
+                                new SubcommandData("bdd", "Définissez la base de donnée MongoDB du serveur")
+                                        .addOption(OptionType.STRING, "lien", "Quel est le lien MongoDB de la base de donnée que vous souhaitez lier ?", true)
                         )
         ).queue();
     }

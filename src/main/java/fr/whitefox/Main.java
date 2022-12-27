@@ -15,7 +15,7 @@ public class Main {
             jda = JDAInstance.createJDAInstance(args[0]);
             CommandsManager.deploySlashCommands();
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            System.out.println("Vous devez mettre le token de votre bot Discord en argument !");
+            System.out.println("[ERROR] Vous devez mettre le token de votre bot Discord en argument !");
             System.out.println("Exemple : java -jar DiscordRankBot.jar VOTRE_TOKEN");
         }
     }

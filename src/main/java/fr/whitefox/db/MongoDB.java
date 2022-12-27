@@ -4,6 +4,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import fr.whitefox.Configuration;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -15,13 +16,18 @@ import static com.mongodb.client.model.Sorts.descending;
 
 public class MongoDB {
     private static MongoClient instance = null;
+    private static final Configuration config = Configuration.getInstance();
     private static final MongoClient mongoClient = MongoDB.getInstance();
     private static final MongoDatabase database = mongoClient.getDatabase("Dev");
     private static final MongoCollection<Document> collection = database.getCollection("RankBot");
 
     public static MongoClient getInstance() {
         if (instance == null) {
-            instance = new MongoClient(new MongoClientURI("mongodb+srv://whitefox:bCkYwZpYDGqcc4cq@cluster0.pfqt7cv.mongodb.net/?retryWrites=true&w=majority"));
+            try {
+                instance = new MongoClient(new MongoClientURI(config.getProperty("bdd")));
+            } catch (ExceptionInInitializerError | IllegalArgumentException e) {
+                System.out.println("[ERROR] Vous devez définir le lien de connexion de la base de données MongoDB en faisant la commande Discord /config bdd LIEN_MONGODB");
+            }
         }
         return instance;
     }
