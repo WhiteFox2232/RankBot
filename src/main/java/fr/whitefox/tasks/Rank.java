@@ -46,7 +46,7 @@ public class Rank {
             }
         };
 
-        executor.scheduleWithFixedDelay(task, 0, 1, TimeUnit.SECONDS);
+        executor.scheduleWithFixedDelay(task, 0, 1, TimeUnit.MINUTES);
     }
 
     public static void addXpText() {
