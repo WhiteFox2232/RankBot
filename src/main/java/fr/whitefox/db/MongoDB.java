@@ -18,8 +18,8 @@ public class MongoDB {
     private static MongoClient instance = null;
     private static final Configuration config = Configuration.getInstance();
     private static final MongoClient mongoClient = MongoDB.getInstance();
-    private static final MongoDatabase database = mongoClient.getDatabase("Dev");
-    private static final MongoCollection<Document> collection = database.getCollection("RankBot");
+    private static final MongoDatabase database = mongoClient.getDatabase("RankBot");
+    private static final MongoCollection<Document> collection = database.getCollection("DB");
 
     public static MongoClient getInstance() {
         if (instance == null) {

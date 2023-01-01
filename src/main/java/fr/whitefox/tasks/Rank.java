@@ -18,13 +18,15 @@ import java.util.concurrent.TimeUnit;
 public class Rank {
 
     private static final JDA jda = Main.getJDAInstance();
+    private static final Configuration config = Configuration.getInstance();
     public static HashMap<Long, Integer> voiceXp = new HashMap<>();
     public static HashMap<Long, Integer> textualXp = Messages.xp;
 
     public static void addXpVoice() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         Runnable task = () -> {
-            Guild guild = jda.getGuildById(918611210151276594L);
+            if (config.getProperty("server_id") == null) return;
+            Guild guild = jda.getGuildById(config.getProperty("server_id"));
             Configuration config = Configuration.getInstance();
 
             HashMap<Long, Integer> updates = new HashMap<>();
