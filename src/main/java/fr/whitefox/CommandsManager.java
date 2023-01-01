@@ -26,7 +26,9 @@ public class CommandsManager {
                 Commands.slash("config", "Configurez divers paramètres fondamentaux du bot")
                         .addSubcommands(
                                 new SubcommandData("bdd", "Définissez la base de donnée MongoDB du serveur")
-                                        .addOption(OptionType.STRING, "lien", "Quel est le lien MongoDB de la base de donnée que vous souhaitez lier ?", true)
+                                        .addOption(OptionType.STRING, "lien", "Quel est le lien MongoDB de la base de donnée que vous souhaitez lier ?", true),
+                                new SubcommandData("server", "Définissez le serveur Discord sur lequel vous souhaitez que le bot enregistre l'activité")
+                                        .addOption(OptionType.STRING, "id", "Quel serveur souhaitez-vous lier ?", true)
                         )
         ).queue();
     }
