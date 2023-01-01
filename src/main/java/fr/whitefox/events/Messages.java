@@ -21,12 +21,12 @@ public class Messages extends ListenerAdapter {
         Configuration config = Configuration.getInstance();
 
         if (!(rateLimit.containsKey(user))) {
-            int randomNum = ThreadLocalRandom.current().nextInt(5, 12 + 1);
+            int randomNum = ThreadLocalRandom.current().nextInt(10, 24 + 1);
             rateLimit.put(user, messageId);
             xp.put(user, randomNum * (!config.exist("boost") ? 1 : Integer.parseInt(config.getProperty("boost"))));
         } else {
             if ((messageId - rateLimit.get(user)) > 10) {
-                int randomNum = ThreadLocalRandom.current().nextInt(5, 12 + 1);
+                int randomNum = ThreadLocalRandom.current().nextInt(10, 24 + 1);
                 xp.put(user, xp.get(user) + randomNum * (!config.exist("boost") ? 1 : Integer.parseInt(config.getProperty("boost"))));
                 rateLimit.replace(user, messageId);
             }
