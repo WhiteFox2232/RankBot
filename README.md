@@ -2,9 +2,9 @@
 RankBot est un bot Discord créé en Java avec la Library JDA. Celui-ci vous permet d'établir un classement d'activité sur votre serveur, en vocal ou en écrit. Celui-ci supporte uniquement MongoDB pour le stockage.
 
 ### Sommaire
- - Get Started
- - Commandes
- - Fonctionnement
+ - [Get Started](#get-started)
+ - [Commandes](#commandes)
+ - [Fonctionnement](#fonctionnement)
  
  ## Get Started
 Voici les différentes étapes à suivre afin de mettre en place le Bot sur votre serveur
