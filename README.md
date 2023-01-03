@@ -2,9 +2,9 @@
 RankBot est un bot Discord créé en Java avec la Library JDA. Celui-ci vous permet d'établir un classement d'activité sur votre serveur, en vocal ou en écrit. Celui-ci supporte uniquement MongoDB pour le stockage.
 
 ### Sommaire
- - Get Started
- - Commandes
- - Fonctionnement
+ - [Get Started](#get-started)
+ - [Commandes](#commandes)
+ - [Fonctionnement](#fonctionnement)
  
  ## Get Started
 Voici les différentes étapes à suivre afin de mettre en place le Bot sur votre serveur
@@ -35,11 +35,10 @@ d'utiliser ces commandes.
   - `/boost get` » Obtenez le boost actuellement défini (par défaut x1)
   - `/boost set` » Définissez le boost d'xp du serveur.
   
-## Fonctionnemment
+## Fonctionnement
 #### En vocal :
 Chaque minute, l'intégralité des membres actuellement en vocal gagneront un nombre d'xp aléatoire compris entre **5** et **12**.
-Lorsqu'un membre se déconnecte d'un salon vocal, son xp est envoyée à la base de données. Il doit être complètement déconnecté, si il change de salon
-cela ne fonctionnera pas. Le bot ne donnera pas d'xp si le membre en question est seul dans le salon vocal ou qu'il est mute.
+Lorsqu'un membre se déconnecte d'un salon vocal, son xp est envoyée à la base de données. Il doit être complètement déconnecté, si il change de salon son xp ne sera pas envoyée. Le bot ne donnera pas d'xp si le membre en question est seul dans le salon vocal ou qu'il est mute.
 #### À l'écrit :
 Chaque message envoyé par un membre de votre serveur lui fera gagner un nombre d'xp aléatoire compris entre **10** et **24**.
 Évidemment, afin d'éviter le spam, l'xp sera limitée à 1 message par minute.
