@@ -15,11 +15,11 @@ public class RankCommand extends ListenerAdapter {
             if (event.getSubcommandName().equals("user")) {
                 long user = event.getOption("user").getAsLong();
 
-                if (!(MongoDB.isRegister(user))) {
+                if (!(MongoDB.isRegister(user)) || event.getOption("user").getAsUser().isBot() || event.getOption("user").getAsUser().equals(event.getJDA().getSelfUser())) {
                     String msg;
                     if (user == event.getUser().getIdLong()) {
                         msg = "<:Deny:951975823324364830> Vous n'êtes pas encore **classé**.";
-                    } else if (event.getOption("user").getAsUser().isBot()) {
+                    } else if (event.getOption("user").getAsUser().isBot() || event.getOption("user").getAsUser().equals(event.getJDA().getSelfUser())) {
                         msg = "<:Deny:951975823324364830> Le bot `" + event.getOption("user").getAsUser().getAsTag() + "` ne peut pas être **classé**. ";
                     } else {
                         msg = "<:Deny:951975823324364830> Le membre `" + event.getOption("user").getAsUser().getAsTag() + "` n'est pas encore **classé**. ";
