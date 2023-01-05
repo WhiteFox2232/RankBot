@@ -46,15 +46,14 @@ public class RankCommand extends ListenerAdapter {
                 rankEmbed.setColor(new Color(0x303136));
                 event.replyEmbeds(rankEmbed.build()).queue();
             }
-        }
-
-        if (event.getSubcommandName().equals("top")) {
-            EmbedBuilder listEmbed = new EmbedBuilder();
-            listEmbed.setAuthor(event.getGuild().getName(), null, event.getGuild().getIconUrl());
-            listEmbed.setDescription(MongoDB.getRankList());
-            listEmbed.setThumbnail(event.getJDA().getSelfUser().getAvatarUrl());
-            listEmbed.setColor(new Color(0x303136));
-            event.replyEmbeds(listEmbed.build()).queue();
+            if (event.getSubcommandName().equals("top")) {
+                EmbedBuilder listEmbed = new EmbedBuilder();
+                listEmbed.setAuthor(event.getGuild().getName(), null, event.getGuild().getIconUrl());
+                listEmbed.setDescription(MongoDB.getRankList());
+                listEmbed.setThumbnail(event.getJDA().getSelfUser().getAvatarUrl());
+                listEmbed.setColor(new Color(0x303136));
+                event.replyEmbeds(listEmbed.build()).queue();
+            }
         }
     }
 

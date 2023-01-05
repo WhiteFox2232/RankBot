@@ -1,6 +1,7 @@
 package fr.whitefox;
 
 import fr.whitefox.commands.BoostCommand;
+import fr.whitefox.commands.BotCommand;
 import fr.whitefox.commands.ConfigCommand;
 import fr.whitefox.commands.RankCommand;
 import fr.whitefox.events.Messages;
@@ -17,7 +18,7 @@ public class JDAInstance {
         return JDABuilder.createDefault(token)
                 .setActivity(Activity.playing("Rank Bot !"))
                 .enableIntents(GUILD_VOICE_STATES)
-                .addEventListeners(new Ready(), new VoiceLeave(), new RankCommand(), new Messages(), new BoostCommand(), new ConfigCommand())
+                .addEventListeners(new Ready(), new VoiceLeave(), new RankCommand(), new Messages(), new BoostCommand(), new ConfigCommand(), new BotCommand())
                 .build();
     }
 }
